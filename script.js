@@ -1,5 +1,5 @@
-
 $(document).ready(function() {
+  const jsonData= require('./data.json'); 
     function sortByFrequencyAndRemoveDuplicates(array) {
         var frequency = {}, value;
     
@@ -29,21 +29,6 @@ $(document).ready(function() {
     
         return uniques.sort(compareFrequency);
     }
-    function Segment(message) {
-    
-        rma = new RakutenMA(model_ja);
-        rma.featset = RakutenMA.default_featset_ja;
-        rma.hash_func = RakutenMA.create_hash_func(15);
-        var tokens = rma.tokenize(HanZenKaku.hs2fs(HanZenKaku.hw2fw(HanZenKaku.h2z(message))));
-        const results = []
-        $.map( tokens, function( a ) {
-            results.push(a[0]);
-          });
-        array = $.map( sortByFrequencyAndRemoveDuplicates(results), function( a ) {
-            wordHtml = "<li class='list-group-item'><a href='https://jisho.org/search/" + a + "' target='_blank'>" + a + "</a></li>"
-            $( "#output" ).append( wordHtml );
-          });
-      }
 
     function getWordList(array, language) {
         switch (language) {
@@ -70,10 +55,6 @@ $(document).ready(function() {
         var message = $('#text-input').val();
         var stringArray = message.split(/(\s+)/);
         getWordList(stringArray, 'de')
-      });
-    $( "#jp" ).click(function() {
-        var message = $('#text-input').val();
-        Segment(message)
       });
     $( "#es" ).click(function() {
         var message = $('#text-input').val();
